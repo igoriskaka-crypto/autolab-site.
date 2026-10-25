@@ -1,0 +1,11 @@
+{
+  "name": "AutoLab — лаборатория автоэлектрика",
+  "short_name": "AutoLab",
+  "description": "Справочник автоэлектрика, OBD-II и диагностические инструменты",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0e11",
+  "theme_color": "#0b0e11",
+  "lang": "ru",
+  "icons": []
+}

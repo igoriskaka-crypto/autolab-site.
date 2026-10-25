@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0e11">
+<meta name="description" content="AutoLab — мобильный справочник автоэлектрика: OBD-II, симптомы, диагностика и обучение.">
+<title>AutoLab — лаборатория автоэлектрика</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{color-scheme:dark;--bg:#0b0e11;--surface:#131920;--surface2:#1a232c;--line:#28333d;--text:#eef3f5;--muted:#95a3af;--accent:#b9f36b;--accentdim:#26351d;--warn:#f6c66d;--danger:#ff817a;--r:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1100px;margin:auto;padding:0 15px 100px}.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #1e252d;gap:12px}.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px;font-size:14px}.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--accent);color:#10170b;font-weight:1000;font-size:17px;letter-spacing:0}.status{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.hero{padding:29px 0 24px}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--accent);font-weight:800;text-transform:uppercase}.hero h1{font-size:clamp(34px,8vw,58px);line-height:.99;letter-spacing:-2px;margin:9px 0 13px;max-width:700px}.hero h1 span{color:var(--accent)}.hero p{color:var(--muted);max-width:560px;margin:0}.hero-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:19px}
+.btn{border:0;border-radius:12px;background:var(--accent);color:#12190c;font-weight:850;padding:11px 15px}.btn.ghost{background:var(--surface2);border:1px solid var(--line);color:var(--text)}.btn.tiny{padding:7px 10px;font-size:12px;border-radius:10px}.btn:active{transform:translateY(1px)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:3px 0 20px}.metric{background:var(--surface);border:1px solid #202a33;border-radius:15px;padding:13px}.metric strong{display:block;font-size:23px;letter-spacing:-1px}.metric small{color:var(--muted);font-size:11px}
+.layout{display:grid;grid-template-columns:1.2fr .8fr;gap:13px}.panel{background:var(--surface);border:1px solid #202a33;border-radius:var(--r);padding:17px;min-width:0}.panel h2{font-size:18px;margin:0 0 5px;letter-spacing:-.3px}.panel p.sub{color:var(--muted);font-size:12px;margin:0 0 15px}.searchrow{display:flex;gap:8px}.searchrow input,.field input,.field select,.field textarea{width:100%;min-width:0;background:#0c1116;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:12px}.searchrow input{font-size:16px;text-transform:uppercase}.searchrow .btn{flex-shrink:0}.result{margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:13px;background:#10161c}.result.hidden{display:none}.codehead{display:flex;justify-content:space-between;align-items:center;gap:10px}.codehead strong{font-size:25px;letter-spacing:-.8px}.tag{font-size:10px;border-radius:99px;padding:5px 8px;background:var(--accentdim);color:var(--accent);white-space:nowrap}.result h3{font-size:15px;margin:9px 0 5px}.result p{font-size:13px;color:#c1cbd2;margin:0 0 8px}.result ul{padding-left:18px;margin:8px 0;color:#c1cbd2;font-size:13px}.note{font-size:11px!important;color:var(--muted)!important;border-top:1px solid var(--line);padding-top:9px;margin-top:10px!important}
+.quicklist{display:grid;gap:9px}.quick{width:100%;text-align:left;display:flex;gap:11px;align-items:center;border:1px solid var(--line);background:#10161c;border-radius:13px;padding:12px;color:var(--text)}.quick .qicon{display:grid;place-items:center;width:36px;height:36px;background:var(--surface2);border-radius:11px;color:var(--accent);font-size:18px;flex-shrink:0}.quick strong{display:block;font-size:13px}.quick small{display:block;color:var(--muted);font-size:11px;margin-top:2px}.quick:hover{border-color:#526445}
+.section{margin-top:25px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:12px}.section-head h2{font-size:22px;letter-spacing:-.6px;margin:0}.section-head p{font-size:12px;color:var(--muted);margin:3px 0 0}.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.learn-card{background:var(--surface);border:1px solid #202a33;border-radius:16px;padding:15px;display:flex;flex-direction:column;min-height:180px}.learn-card .num{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:1px}.learn-card h3{font-size:15px;margin:9px 0 6px}.learn-card p{color:var(--muted);font-size:12px;margin:0 0 14px;flex:1}.learn-card button{align-self:flex-start}
+.tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}.field label{font-size:11px;color:var(--muted)}.field select{appearance:auto}.output{background:#0d1318;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;color:#d4dde3;min-height:50px;white-space:pre-wrap}.symptom-buttons{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:#0e141a;color:var(--muted);padding:8px 10px;border-radius:99px;font-size:12px}.chip.active{background:var(--accentdim);border-color:#5b7746;color:var(--accent)}
+.code-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.code-pill{background:#10161c;border:1px solid var(--line);border-radius:12px;padding:11px;display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--text);text-align:left}.code-pill strong{color:var(--accent);font-size:13px}.code-pill span{font-size:11px;color:var(--muted);text-align:right}
+.saved-empty{font-size:12px;color:var(--muted);padding:12px;border:1px dashed var(--line);border-radius:12px}
+.footer{margin-top:28px;border-top:1px solid #202a33;padding-top:18px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.bottomnav{position:fixed;z-index:9;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:3px;padding:8px 7px max(8px,env(safe-area-inset-bottom));background:rgba(11,14,17,.94);border-top:1px solid var(--line);backdrop-filter:blur(14px)}.navbtn{border:0;background:transparent;color:var(--muted);border-radius:12px;padding:7px 12px;min-width:61px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px}.navbtn b{font-size:17px;font-weight:500}.navbtn.active{background:var(--accentdim);color:var(--accent)}
+.toast{position:fixed;z-index:20;left:50%;bottom:85px;transform:translateX(-50%);background:var(--accent);color:#12190c;font-weight:800;padding:10px 15px;border-radius:99px;font-size:12px;display:none;max-width:90vw}.toast.show{display:block}
+.page{display:none}.page.active{display:block}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.cards3{grid-template-columns:1fr}.learn-card{min-height:unset}.learn-card p{margin-bottom:10px}.tools-grid{grid-template-columns:1fr}.hero{padding-top:24px}.hero h1{letter-spacing:-1.4px}.section-head h2{font-size:20px}.panel{padding:15px}.status .status-label{display:none}}
+@media(min-width:721px){.bottomnav{display:none}.wrap{padding-bottom:35px}.hero{padding-top:39px}.quicklist{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <div class="logo"><div class="mark">A</div><span>AUTOLAB</span></div>
+  <div class="status"><span class="dot"></span><span class="status-label">ЛИЧНАЯ ЛАБОРАТОРИЯ АВТОЭЛЕКТРИКА</span></div>
+</header>
+
+<main>
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="eyebrow">DIAGNOSE · LEARN · REPAIR</div>
+    <h1>Понимай, что<br>происходит <span>под капотом.</span></h1>
+    <p>Практический справочник автоэлектрика: коды ошибок, логика диагностики и инструменты для мастерской.</p>
+    <div class="hero-actions"><button class="btn" onclick="go('codes')">Найти код ошибки ↗</button><button class="btn ghost" onclick="go('symptoms')">Диагностика по симптомам</button></div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><strong>OBD-II</strong><small>База кодов ошибок</small></div>
+    <div class="metric"><strong>12 V</strong><small>Электросистема авто</small></div>
+    <div class="metric"><strong>01</strong><small>Путь от симптома к проверке</small></div>
+  </div>
+  <div class="layout">
+    <div class="panel" id="code-search">
+      <h2>Поиск OBD-II</h2><p class="sub">Введи код, например P0300, P0420 или P0171.</p>
+      <div class="searchrow"><input id="codeInput" placeholder="P0300" maxlength="5" autocapitalize="characters" autocomplete="off"><button class="btn" onclick="searchCode()">Найти</button></div>
+      <div class="result hidden" id="codeResult" aria-live="polite"></div>
+    </div>
+    <div class="panel">
+      <h2>Быстрый доступ</h2><p class="sub">Популярные направления диагностики.</p>
+      <div class="quicklist">
+        <button class="quick" onclick="go('symptoms')"><span class="qicon">⌁</span><span><strong>Не запускается двигатель</strong><small>АКБ, стартер, питание и масса</small></span></button>
+        <button class="quick" onclick="go('tools')"><span class="qicon">ϟ</span><span><strong>Электрические расчёты</strong><small>Закон Ома и мощность</small></span></button>
+        <button class="quick" onclick="go('learn')"><span class="qicon">⌘</span><span><strong>Учебные материалы</strong><small>Базовые принципы автоэлектрики</small></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-head"><div><h2>Начни с основ</h2><p>Короткие памятки для практической работы.</p></div><button class="btn ghost tiny" onclick="go('learn')">Все темы</button></div>
+    <div class="cards3">
+      <article class="learn-card"><div class="num">01 / POWER</div><h3>Питание и масса</h3><p>Почему проверка напряжения без нагрузки не всегда выявляет плохой контакт.</p><button class="btn ghost tiny" onclick="openLesson('power')">Открыть памятку →</button></article>
+      <article class="learn-card"><div class="num">02 / SIGNAL</div><h3>Датчики и сигналы</h3><p>Как подходить к проверке датчика: питание, масса, сигнал и условия измерения.</p><button class="btn ghost tiny" onclick="openLesson('sensors')">Открыть памятку →</button></article>
+      <article class="learn-card"><div class="num">03 / METHOD</div><h3>Логика диагностики</h3><p>От жалобы клиента — к проверяемой гипотезе, а не к замене деталей наугад.</p><button class="btn ghost tiny" onclick="openLesson('method')">Открыть памятку →</button></article>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-codes">
+  <div class="section-head"><div><div class="eyebrow">REFERENCE</div><h2>Справочник OBD-II</h2><p>Базовые распространённые коды. Точная причина зависит от автомобиля и условий.</p></div></div>
+  <div class="panel"><div class="searchrow"><input id="codeInput2" placeholder="Введите код, например P0420" maxlength="5" autocapitalize="characters"><button class="btn" onclick="searchCode('2')">Найти</button></div><div class="result hidden" id="codeResult2" aria-live="polite"></div></div>
+  <div class="section"><div class="section-head"><div><h2>Популярные коды</h2><p>Нажми на код, чтобы открыть описание.</p></div></div><div class="code-list" id="codeList"></div></div>
+</section>
+
+<section class="page" id="page-symptoms">
+  <div class="section-head"><div><div class="eyebrow">TROUBLESHOOTING</div><h2>Диагностика по симптомам</h2><p>Выбери жалобу и получи безопасный порядок первичных проверок.</p></div></div>
+  <div class="panel"><h2>Что происходит с автомобилем?</h2><p class="sub">Это ориентир для первичной диагностики, не окончательный диагноз.</p>
+  <div class="symptom-buttons" id="symptomButtons">
+    <button class="chip active" data-sym="nostart">Не запускается</button><button class="chip" data-sym="click">Слышен щелчок</button><button class="chip" data-sym="battery">Разряжается АКБ</button><button class="chip" data-sym="misfire">Двигатель троит</button><button class="chip" data-sym="lights">Мигает свет</button><button class="chip" data-sym="stall">Глохнет на ходу</button>
+  </div><div class="result" id="symptomResult" style="display:block;margin-top:14px"></div></div>
+  <div class="section"><div class="panel"><h2>Универсальный алгоритм</h2><ol style="padding-left:20px;color:#c1cbd2;font-size:13px"><li>Уточни условия появления неисправности и историю ремонта.</li><li>Проверь напряжение АКБ и состояние клемм.</li><li>Считай ошибки и сохрани freeze frame, если доступно.</li><li>Сверь схему и спецификацию именно этой модели.</li><li>Проведи измерение, которое подтвердит или опровергнет гипотезу.</li></ol><p class="note">Не отключай разъёмы и не измеряй сопротивление в цепи под напряжением. Для систем SRS, гибридов и электромобилей нужны отдельные процедуры безопасности.</p></div></div>
+</section>
+
+<section class="page" id="page-tools">
+  <div class="section-head"><div><div class="eyebrow">WORKSHOP TOOLS</div><h2>Инструменты</h2><p>Простые расчёты для электрических цепей.</p></div></div>
+  <div class="tools-grid">
+    <div class="panel"><h2>Закон Ома</h2><p class="sub">Введи любые два значения — рассчитается третье.</p>
+      <div class="field"><label for="voltage">Напряжение (В)</label><input type="number" id="voltage" min="0" step="any" placeholder="12"></div>
+      <div class="field"><label for="current">Ток (А)</label><input type="number" id="current" min="0" step="any" placeholder="5"></div>
+      <div class="field"><label for="resistance">Сопротивление (Ом)</label><input type="number" id="resistance" min="0" step="any" placeholder="2.4"></div>
+      <button class="btn" onclick="calcOhm()">Рассчитать</button><div class="output" id="ohmOutput" style="margin-top:11px">Результат появится здесь.</div>
+    </div>
+    <div class="panel"><h2>Электрическая мощность</h2><p class="sub">P = U × I — оценка потребляемой мощности.</p>
+      <div class="field"><label for="pVoltage">Напряжение (В)</label><input type="number" id="pVoltage" min="0" step="any" placeholder="13.8"></div>
+      <div class="field"><label for="pCurrent">Ток (А)</label><input type="number" id="pCurrent" min="0" step="any" placeholder="4"></div>
+      <button class="btn" onclick="calcPower()">Рассчитать мощность</button><div class="output" id="powerOutput" style="margin-top:11px">Результат появится здесь.</div>
+    </div>
+  </div>
+  <div class="section"><div class="panel"><h2>Сохранённые материалы</h2><p class="sub">Добавляй коды в закладки и возвращайся к ним позже на этом устройстве.</p><div id="savedCodes" class="saved-empty">Пока ничего не сохранено.</div></div></div>
+</section>
+
+<section class="page" id="page-learn">
+  <div class="section-head"><div><div class="eyebrow">FIELD NOTES</div><h2>База знаний</h2><p>Короткие заметки для начинающего автоэлектрика.</p></div></div>
+  <div class="cards3">
+    <article class="learn-card"><div class="num">01 / POWER</div><h3>Питание и масса</h3><p>Падение напряжения под нагрузкой часто информативнее простой проверки целостности.</p><button class="btn ghost tiny" onclick="openLesson('power')">Читать →</button></article>
+    <article class="learn-card"><div class="num">02 / SIGNAL</div><h3>Датчики и сигналы</h3><p>Сначала выясни тип датчика и распиновку по схеме конкретного автомобиля.</p><button class="btn ghost tiny" onclick="openLesson('sensors')">Читать →</button></article>
+    <article class="learn-card"><div class="num">03 / METHOD</div><h3>Логика диагностики</h3><p>Проверяй причину, а не просто меняй деталь, на которую указывает код.</p><button class="btn ghost tiny" onclick="openLesson('method')">Читать →</button></article>
+    <article class="learn-card"><div class="num">04 / OBD</div><h3>Как читать код</h3><p>Код сообщает о выявленном отклонении, но не всегда указывает на сломанную деталь.</p><button class="btn ghost tiny" onclick="openLesson('obd')">Читать →</button></article>
+    <article class="learn-card"><div class="num">05 / SAFETY</div><h3>Безопасность измерений</h3><p>Мультиметр, правильный диапазон и схема важнее скорости проверки.</p><button class="btn ghost tiny" onclick="openLesson('safety')">Читать →</button></article>
+  </div>
+  <div class="section"><div class="panel" id="lessonBox"><h2>Выбери тему</h2><p class="sub">Открой памятку выше — содержание появится здесь.</p></div></div>
+</section>
+</main>
+<footer class="footer"><span>© AutoLab · версия 0.1</span><span>Учебный справочник · проверяй данные по документации производителя</span></footer>
+</div>
+<nav class="bottomnav" aria-label="Основная навигация">
+  <button class="navbtn active" data-page="home" onclick="go('home')"><b>⌂</b>Главная</button>
+  <button class="navbtn" data-page="codes" onclick="go('codes')"><b>⌕</b>OBD-II</button>
+  <button class="navbtn" data-page="symptoms" onclick="go('symptoms')"><b>⌁</b>Симптомы</button>
+  <button class="navbtn" data-page="tools" onclick="go('tools')"><b>ϟ</b>Инструменты</button>
+  <button class="navbtn" data-page="learn" onclick="go('learn')"><b>⌘</b>Обучение</button>
+</nav>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const codes={
+P0100:{title:"Неисправность цепи расходомера воздуха (MAF)",desc:"Блок управления обнаружил проблему в цепи измерения расхода воздуха.",causes:["Разъём или проводка MAF","Загрязнение или неисправность датчика","Подсос воздуха или проблема питания/массы"],check:"Проверь разъём, питание и массу по схеме; осмотри впуск на утечки и сравни данные MAF с нормой производителя."},
+P0115:{title:"Неисправность цепи датчика температуры ОЖ",desc:"Сигнал температуры охлаждающей жидкости вне ожидаемых условий.",causes:["Разъём или проводка","Неисправный датчик ECT","Проблема опорного напряжения или массы"],check:"На холодном двигателе сравни ECT с температурой окружающей среды и проверь цепь по электрической схеме."},
+P0171:{title:"Слишком бедная смесь — Bank 1",desc:"Коррекции топлива указывают на избыток воздуха или недостаток топлива относительно расчёта ЭБУ.",causes:["Подсос воздуха после MAF","Низкое давление топлива","Утечка выхлопа до датчика кислорода","Ошибочные данные MAF"],check:"Посмотри STFT/LTFT на холостом ходу и при повышенных оборотах; затем проверяй герметичность впуска и давление топлива по спецификации."},
+P0300:{title:"Обнаружены случайные/множественные пропуски зажигания",desc:"ЭБУ фиксирует пропуски воспламенения в одном или нескольких цилиндрах.",causes:["Свечи или катушки зажигания","Форсунка или давление топлива","Подсос воздуха","Компрессия или фазы газораспределения"],check:"Считай сопутствующие коды и счётчики пропусков. Если MIL мигает, избегай нагрузки и продолжительной езды: можно повредить катализатор."},
+P0301:{title:"Пропуски воспламенения — цилиндр 1",desc:"ЭБУ обнаруживает пропуски в первом цилиндре; нумерацию цилиндров уточняй для конкретного двигателя.",causes:["Свеча или катушка","Форсунка и её цепь","Компрессия, подсос или механическая проблема"],check:"Проверь сопутствующие коды и данные. Перестановку катушки/свечи делай только если конструкция и процедура это допускают."},
+P0325:{title:"Неисправность цепи датчика детонации",desc:"ЭБУ обнаружил электрическую неисправность цепи датчика детонации.",causes:["Проводка или разъём","Датчик детонации","Неправильная установка или повреждение жгута"],check:"Осмотри жгут и разъём, затем проверь сопротивление/сигнал только по заводской процедуре."},
+P0420:{title:"Эффективность катализатора ниже порога — Bank 1",desc:"Система контроля оценивает эффективность катализатора как недостаточную.",causes:["Изношенный катализатор","Пропуски зажигания или неправильная смесь","Утечка выхлопа","Проблема датчиков кислорода или проводки"],check:"Сначала устрани пропуски и проблемы смеси, проверь утечки выхлопа и данные датчиков. Не меняй катализатор только по одному коду."},
+P0442:{title:"Обнаружена небольшая утечка EVAP",desc:"Система улавливания паров топлива выявила небольшую негерметичность.",causes:["Крышка топливного бака или уплотнение","Шланги и соединения EVAP","Клапан продувки/вентиляции"],check:"Проверь крышку и доступные шланги; дальнейшая проверка может требовать дымогенератора и заводской процедуры."},
+P0500:{title:"Неисправность сигнала скорости автомобиля",desc:"ЭБУ не получает ожидаемый сигнал скорости.",causes:["Датчик скорости или датчик ABS, в зависимости от конструкции","Проводка и разъёмы","Проблема сети или комбинации приборов"],check:"Уточни источник скорости на данной модели и сравни параметры скорости в доступных блоках."},
+P0562:{title:"Низкое напряжение системы",desc:"Блок управления зарегистрировал напряжение ниже ожидаемого.",causes:["Разряженная или неисправная АКБ","Плохие клеммы или масса","Проблема зарядки генератора","Повышенное потребление"],check:"Измерь напряжение на АКБ в покое и при работающем двигателе с учётом спецификации производителя; проверь падение напряжения под нагрузкой."},
+P0700:{title:"Запрос индикации неисправности трансмиссии",desc:"Часто означает, что блок управления трансмиссией запросил включение MIL; это не конкретный диагноз.",causes:["В памяти TCM есть другие коды","Электрическая или гидравлическая проблема трансмиссии"],check:"Считай коды именно из блока TCM совместимым сканером и следуй процедуре производителя."}
+};
+const symptoms={
+nostart:{title:"Двигатель не запускается",steps:["Уточни: стартер вращает двигатель или тишина?","Проверь состояние АКБ и затяжку клемм.","Если стартер вращает: считай ошибки, проверь разрешение запуска, обороты при прокрутке и питание систем зажигания/впрыска.","Если не вращает: проверь цепь управления стартером, реле и падение напряжения по схеме."],note:"Не замыкай клеммы стартера отвёрткой. Учитывай положение селектора, иммобилайзер и требования безопасности."},
+click:{title:"Щелчок при запуске",steps:["Измерь напряжение АКБ до запуска и во время попытки.","Проверь клеммы АКБ, массу двигателя и соединения силового кабеля.","Если питание и падения напряжения в норме — проверь управляющий сигнал на втягивающем реле и сам стартер по процедуре."],note:"Один щелчок может иметь несколько причин; сам по себе он не доказывает неисправность стартера."},
+battery:{title:"Аккумулятор разряжается",steps:["Заряди АКБ подходящим устройством и проверь её состояние нагрузочным/проводимостным тестером.","Проверь зарядную систему по спецификации автомобиля.","Если АКБ исправна, измерь ток покоя после перехода всех блоков в режим сна.","Изолируй цепь повышенного потребления по схеме и предохранителям."],note:"Не снимай клемму АКБ при работающем двигателе — это может повредить электронику."},
+misfire:{title:"Двигатель работает неровно / троит",steps:["Считай коды и посмотри счётчики пропусков по цилиндрам.","Проверь свечи/катушки на бензиновом двигателе, а также разъёмы и жгуты.","При необходимости проверь форсунки, подсос воздуха, компрессию и фазы.","Сопоставляй данные live data с условиями появления симптома."],note:"Если индикатор Check Engine мигает, прекрати нагрузку и как можно скорее безопасно остановись."},
+lights:{title:"Свет мигает или меняет яркость",steps:["Проверь состояние АКБ, клемм и массы кузова/двигателя.","Измерь напряжение зарядки и падение напряжения при включённых потребителях.","Проверь ремень и систему генератора, затем цепь конкретного потребителя."],note:"Для современных интеллектуальных систем зарядки нормы зависят от режима и температуры — используй спецификацию модели."},
+stall:{title:"Двигатель глохнет на ходу",steps:["Если это происходит сейчас, безопасно остановись и не продолжай движение при опасном поведении автомобиля.","Считай ошибки во всех связанных блоках и зафиксируй условия появления.","Проверь питание ЭБУ, реле, массы, сигналы оборотов и давление топлива по спецификации."],note:"Не выполняй проверки в движении самостоятельно. Сначала исключи причины, влияющие на безопасность."}
+};
+const lessons={
+power:{title:"Питание и масса",body:"<p><b>Главная идея:</b> цепь может показывать нормальное напряжение без нагрузки и всё же не обеспечивать нужный ток.</p><ol><li>Осмотри соединение: коррозия, ослабление, повреждение провода.</li><li>Измеряй падение напряжения на участке цепи во время работы потребителя.</li><li>Сравни результат с документацией производителя.</li><li>Проверяй силовую массу и питание отдельно.</li></ol><p class='note'>Не прокалывай изоляцию без необходимости: это создаёт место для коррозии. Используй подходящие щупы и схему.</p>"},
+sensors:{title:"Датчики и сигналы",body:"<p>Перед проверкой выясни тип датчика: аналоговый, цифровой Hall, индуктивный, LIN/CAN и т. д. Универсальной распиновки нет.</p><ol><li>Найди схему и распиновку именно этой модификации.</li><li>Проверь питание, массу и состояние контактов.</li><li>Сравни сигнал сканером или измерительным прибором с заводской спецификацией.</li><li>Проверь проводку до блока управления, если есть основания.</li></ol><p class='note'>Нельзя проверять неизвестные выводы наугад: можно повредить датчик или блок управления.</p>"},
+method:{title:"Логика диагностики",body:"<p>Хорошая диагностика сокращает число замен деталей наугад.</p><ol><li>Сформулируй симптом и условия его появления.</li><li>Считай коды до их удаления и сохрани стоп-кадр.</li><li>Составь несколько гипотез и выбери проверку, которая различает их.</li><li>Измерь, сравни с нормой и запиши результат.</li><li>После ремонта повтори проверку в тех же условиях.</li></ol>"},
+obd:{title:"Как читать код OBD-II",body:"<p>Код — это указание на обнаруженное отклонение, а не обязательно название неисправной детали.</p><ul><li><b>P</b> — силовой агрегат/трансмиссия; B — кузов; C — шасси; U — связь между блоками.</li><li>Сопутствующие коды и freeze frame помогают определить условия возникновения.</li><li>Уточняй описание и тестовые процедуры для конкретной марки, модели, двигателя и года.</li></ul><p class='note'>Эта база содержит только часть распространённых кодов и не заменяет заводскую документацию.</p>"},
+safety:{title:"Безопасность измерений",body:"<ul><li>Выбирай правильный режим и диапазон мультиметра до подключения щупов.</li><li>Не измеряй сопротивление в цепи под напряжением.</li><li>Не замыкай соседние контакты щупом и не прокалывай неизвестные провода.</li><li>Перед работой с SRS, высоковольтными гибридными/EV-системами изучи специальные процедуры и используй соответствующее оборудование.</li></ul><p class='note'>При сомнении остановись и сверься с сервисной документацией.</p>"}
+};
+let saved=JSON.parse(localStorage.getItem('autolabSaved')||'[]');
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2100)}
+function go(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});if(page==='tools')renderSaved()}
+function resultHTML(code){let c=codes[code];if(!c)return `<div class="codehead"><strong>${escapeHTML(code||'КОД')}</strong><span class="tag">НЕТ В БАЗЕ</span></div><p>Пока нет описания этого кода в локальной базе AutoLab.</p><p>Уточни код в заводской документации или добавь его в будущую версию справочника.</p><p class="note">Код может иметь уточнения для конкретного производителя.</p>`;
+return `<div class="codehead"><strong>${code}</strong><span class="tag">ОБЩИЙ OBD-II</span></div><h3>${c.title}</h3><p>${c.desc}</p><b style="font-size:12px">Возможные причины</b><ul>${c.causes.map(x=>`<li>${x}</li>`).join('')}</ul><b style="font-size:12px">С чего начать</b><p>${c.check}</p><p class="note">Общее справочное описание. Проверяй точное определение, условия установки и процедуру тестирования для конкретного автомобиля.</p><div class="actions"><button class="btn ghost tiny" onclick="toggleSave('${code}')">${saved.includes(code)?'★ Сохранено':'☆ Сохранить код'}</button></div>`}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function searchCode(which=''){const input=document.getElementById(which==='2'?'codeInput2':'codeInput');const code=input.value.trim().toUpperCase();const box=document.getElementById(which==='2'?'codeResult2':'codeResult');if(!/^[PBCU][0-9A-F][0-9A-F]{3}$/.test(code)){box.classList.remove('hidden');box.innerHTML='<p>Введи код в формате P0300, B1234, C1234 или U0100.</p>';return}box.classList.remove('hidden');box.innerHTML=resultHTML(code)}
+function toggleSave(code){saved=saved.includes(code)?saved.filter(x=>x!==code):[...saved,code];localStorage.setItem('autolabSaved',JSON.stringify(saved));const box=document.getElementById('codeResult');if(box&&!box.classList.contains('hidden'))box.innerHTML=resultHTML(code);const box2=document.getElementById('codeResult2');if(box2&&!box2.classList.contains('hidden')){let code2=document.getElementById('codeInput2').value.trim().toUpperCase();box2.innerHTML=resultHTML(code2)}renderSaved();toast(saved.includes(code)?'Код сохранён на этом устройстве':'Код удалён из сохранённых')}
+function renderSaved(){const box=document.getElementById('savedCodes');if(!box)return;if(!saved.length){box.className='saved-empty';box.textContent='Пока ничего не сохранено.';return}box.className='';box.innerHTML=saved.map(code=>`<div class="item"><div class="item-main"><div class="item-title">${code}</div><div class="item-sub">${codes[code]?.title||'Код OBD-II'}</div></div><button class="btn ghost tiny" onclick="showSavedCode('${code}')">Открыть</button><button class="btn ghost tiny" onclick="toggleSave('${code}')">Убрать</button></div>`).join('')}
+function showSavedCode(code){go('codes');document.getElementById('codeInput2').value=code;searchCode('2')}
+function openLesson(id){go('learn');const l=lessons[id];document.getElementById('lessonBox').innerHTML=`<div class="eyebrow">FIELD NOTE</div><h2>${l.title}</h2>${l.body}`}
+function setupSymptoms(){document.querySelectorAll('[data-sym]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-sym]').forEach(x=>x.classList.toggle('active',x===b));renderSymptom(b.dataset.sym)}));renderSymptom('nostart')}
+function renderSymptom(id){const s=symptoms[id];document.getElementById('symptomResult').innerHTML=`<h3>${s.title}</h3><ol>${s.steps.map(x=>`<li>${x}</li>`).join('')}</ol><p class="note">${s.note}</p>`}
+function num(id){const v=document.getElementById(id).value;return v===''?null:Number(v)}
+function calcOhm(){let u=num('voltage'),i=num('current'),r=num('resistance');let known=[u,i,r].filter(x=>x!==null&&Number.isFinite(x));let out='';if(known.length!==2){out='Введи ровно два значения. Третье будет рассчитано по закону Ома.'}else if([u,i,r].some(x=>x!==null&&x===0)){if(u===0&&i!==null&&r!==null)out='При U = 0 В ток по идеальной модели равен 0 А.';else if(i===0&&u!==null&&r!==null)out='При I = 0 А формула U/I не позволяет определить сопротивление.';else out='Для нулевых значений проверь условия расчёта.'}else if(u===null){u=i*r;out=`Напряжение: U = I × R = ${fmt(u)} В`}else if(i===null){i=u/r;out=`Ток: I = U / R = ${fmt(i)} А`}else{r=u/i;out=`Сопротивление: R = U / I = ${fmt(r)} Ом`}document.getElementById('ohmOutput').textContent=out}
+function calcPower(){const u=num('pVoltage'),i=num('pCurrent');document.getElementById('powerOutput').textContent=(u===null||i===null||u<0||i<0)?'Введи неотрицательные значения напряжения и тока.':`Мощность: P = U × I = ${fmt(u*i)} Вт\nПриблизительная электрическая мощность; учитывай реальные условия и потери.`}
+function fmt(x){return Number(x.toFixed(3)).toLocaleString('ru-RU')}
+function renderCodeList(){document.getElementById('codeList').innerHTML=Object.keys(codes).map(code=>`<button class="code-pill" onclick="document.getElementById('codeInput2').value='${code}';searchCode('2');document.getElementById('codeResult2').scrollIntoView({behavior:'smooth',block:'nearest'})"><strong>${code}</strong><span>${codes[code].title}</span></button>`).join('')}
+document.getElementById('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter')searchCode()});document.getElementById('codeInput2').addEventListener('keydown',e=>{if(e.key==='Enter')searchCode('2')});
+setupSymptoms();renderCodeList();renderSaved();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body></html>
